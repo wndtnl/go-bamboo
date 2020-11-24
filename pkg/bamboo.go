@@ -1,4 +1,4 @@
-package pkg
+package bamboo
 
 import (
 	"github.com/wndtnl/go-bamboo/pkg/client"
