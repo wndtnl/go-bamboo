@@ -1,6 +1,7 @@
 # Go Client - Bamboo
 
-## Public Bamboo API
+Go client library for the "Terraform Provider for Bamboo" Atlassian plugin.
 
-- https://docs.atlassian.com/atlassian-bamboo/REST/latest
-- https://developer.atlassian.com/server/bamboo/bamboo-rest-resources
+Allows API management of the following resources:
+
+- Global Variables

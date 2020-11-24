@@ -1,0 +1,8 @@
+{
+  "status": "ERROR",
+  "fieldErrors": {
+    "variableKey": [
+      "Bamboo already contains this global variable"
+    ]
+  }
+}

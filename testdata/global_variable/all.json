@@ -1,0 +1,14 @@
+[
+  {
+    "key": "Database4",
+    "value": "Connection4",
+    "variableType": "GLOBAL",
+    "id": 3211269
+  },
+  {
+    "key": "MySecret",
+    "value": "NewValue",
+    "variableType": "GLOBAL",
+    "id": 3211271
+  }
+]
