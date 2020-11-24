@@ -6,9 +6,9 @@ import (
 )
 
 const (
-	defaultBaseURL  = "http://localhost:6990/bamboo"
-	defaultUsername = "admin"
-	defaultPassword = "admin"
+	DefaultBaseURL  = "http://localhost:6990/bamboo"
+	DefaultUsername = "admin"
+	DefaultPassword = "admin"
 )
 
 type Client struct {
@@ -18,7 +18,7 @@ type Client struct {
 }
 
 func NewDefaultClient() (*Client, error) {
-	return NewClient(defaultBaseURL, defaultUsername, defaultPassword)
+	return NewClient(DefaultBaseURL, DefaultUsername, DefaultPassword)
 }
 
 func NewClient(baseURL, username, password string) (*Client, error) {
