@@ -72,6 +72,19 @@ func Test_GlobalVariable_GetOne(t *testing.T) {
 	assert.Equal(t, "Database4", variable.Key)
 }
 
+func Test_GlobalVariable_Search(t *testing.T) {
+	setup()
+	defer teardown()
+
+	endpoint := "/rest/tpb/1.0/global_variable/search"
+	useFileResponse(t, endpoint, "global_variable/one.json")
+
+	variable, err := globalVariableService.Search("Database4")
+	assert.Nil(t, err, err)
+	assert.NotNil(t, variable, "empty response")
+	assert.Equal(t, 3211269, variable.Id)
+}
+
 func Test_GlobalVariable_Create(t *testing.T) {
 	setup()
 	defer teardown()
@@ -90,7 +103,7 @@ func Test_GlobalVariable_Update(t *testing.T) {
 	setup()
 	defer teardown()
 
-	endpoint := "/rest/tpb/1.0/global_variable"
+	endpoint := "/rest/tpb/1.0/global_variable/3211269"
 	useEmptyResponse(t, endpoint)
 
 	err := globalVariableService.Update(3211269, "MySecret", "NewSecretValue")
@@ -101,7 +114,7 @@ func Test_GlobalVariable_Delete(t *testing.T) {
 	setup()
 	defer teardown()
 
-	endpoint := "/rest/tpb/1.0/global_variable"
+	endpoint := "/rest/tpb/1.0/global_variable/3211269"
 	useEmptyResponse(t, endpoint)
 
 	err := globalVariableService.Delete(3211269)
