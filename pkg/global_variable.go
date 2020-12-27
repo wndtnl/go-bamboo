@@ -1,9 +1,8 @@
-package services
+package bamboo
 
 import (
 	"context"
 	"fmt"
-	"github.com/wndtnl/go-bamboo/pkg/client"
 	"net/http"
 )
 
@@ -16,10 +15,10 @@ type GlobalVariable struct {
 var globalVariableEndpoint = "global_variable"
 
 type GlobalVariableService struct {
-	rest *client.Rest
+	rest *Rest
 }
 
-func NewGlobalVariableService(rest *client.Rest) *GlobalVariableService {
+func NewGlobalVariableService(rest *Rest) *GlobalVariableService {
 	return &GlobalVariableService{
 		rest: rest,
 	}

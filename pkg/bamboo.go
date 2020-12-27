@@ -1,10 +1,5 @@
 package bamboo
 
-import (
-	"github.com/wndtnl/go-bamboo/pkg/client"
-	"github.com/wndtnl/go-bamboo/pkg/services"
-)
-
 const (
 	DefaultBaseURL  = "http://localhost:6990/bamboo"
 	DefaultUsername = "admin"
@@ -12,9 +7,10 @@ const (
 )
 
 type Client struct {
-	rest *client.Rest
+	rest *Rest
 
-	GlobalVariable *services.GlobalVariableService
+	GlobalVariable *GlobalVariableService
+	LocalAgent *LocalAgentService
 }
 
 func NewDefaultClient() (*Client, error) {
@@ -23,14 +19,15 @@ func NewDefaultClient() (*Client, error) {
 
 func NewClient(baseURL, username, password string) (*Client, error) {
 
-	rest, err := client.NewBasicAuthClient(baseURL, username, password)
+	rest, err := NewBasicAuthClient(baseURL, username, password)
 	if err != nil {
 		return nil, err
 	}
 
 	bamboo := &Client{
 		rest:           rest,
-		GlobalVariable: services.NewGlobalVariableService(rest),
+		GlobalVariable: NewGlobalVariableService(rest),
+		LocalAgent:     NewLocalAgentService(rest),
 	}
 
 	return bamboo, nil

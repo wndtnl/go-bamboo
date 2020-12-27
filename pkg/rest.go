@@ -1,4 +1,4 @@
-package client
+package bamboo
 
 import (
 	"bytes"
@@ -12,6 +12,11 @@ import (
 	"strings"
 	"time"
 )
+
+type BasicAuthCredentials struct {
+	Username string
+	Password string
+}
 
 type Rest struct {
 	httpClient  *http.Client
