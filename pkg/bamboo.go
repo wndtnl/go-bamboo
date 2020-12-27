@@ -9,8 +9,9 @@ const (
 type Client struct {
 	rest *Rest
 
-	GlobalVariable *GlobalVariableService
-	LocalAgent *LocalAgentService
+	GlobalVariable   *GlobalVariableService
+	LocalAgent       *LocalAgentService
+	SharedCredential *SharedCredentialService
 }
 
 func NewDefaultClient() (*Client, error) {
@@ -25,9 +26,10 @@ func NewClient(baseURL, username, password string) (*Client, error) {
 	}
 
 	bamboo := &Client{
-		rest:           rest,
-		GlobalVariable: NewGlobalVariableService(rest),
-		LocalAgent:     NewLocalAgentService(rest),
+		rest:             rest,
+		GlobalVariable:   NewGlobalVariableService(rest),
+		LocalAgent:       NewLocalAgentService(rest),
+		SharedCredential: NewSharedCredentialService(rest),
 	}
 
 	return bamboo, nil

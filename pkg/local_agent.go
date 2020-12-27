@@ -79,19 +79,13 @@ func (s *LocalAgentService) SearchWithContext(ctx context.Context, name string) 
 	return localAgent, err
 }
 
-func (s *LocalAgentService) Create(name, description string, enabled bool) (*LocalAgent, error) {
-	return s.CreateWithContext(context.Background(), name, description, enabled)
+func (s *LocalAgentService) Create(localAgent *LocalAgent) (*LocalAgent, error) {
+	return s.CreateWithContext(context.Background(), localAgent)
 }
 
-func (s *LocalAgentService) CreateWithContext(ctx context.Context, name, description string, enabled bool) (*LocalAgent, error) {
+func (s *LocalAgentService) CreateWithContext(ctx context.Context, localAgent *LocalAgent) (*LocalAgent, error) {
 
-	agent := &LocalAgent{
-		Name: name,
-		Description: description,
-		Enabled: enabled,
-	}
-
-	req, err := s.rest.NewRequestWithContext(ctx, http.MethodPost, localAgentEndpoint, &agent)
+	req, err := s.rest.NewRequestWithContext(ctx, http.MethodPost, localAgentEndpoint, &localAgent)
 	if err != nil {
 		return nil, err
 	}
@@ -102,22 +96,15 @@ func (s *LocalAgentService) CreateWithContext(ctx context.Context, name, descrip
 	return newAgent, err
 }
 
-func (s *LocalAgentService) Update(id int, name, description string, enabled bool) error {
-	return s.UpdateWithContext(context.Background(), id, name, description, enabled)
+func (s *LocalAgentService) Update(id int, localAgent *LocalAgent) error {
+	return s.UpdateWithContext(context.Background(), id, localAgent)
 }
 
-func (s *LocalAgentService) UpdateWithContext(ctx context.Context, id int, name, description string, enabled bool) error {
-
-	agent := &LocalAgent{
-		Id:    id,
-		Name:   name,
-		Description: description,
-		Enabled: enabled,
-	}
+func (s *LocalAgentService) UpdateWithContext(ctx context.Context, id int, localAgent *LocalAgent) error {
 
 	endpoint := fmt.Sprintf("%s/%d", localAgentEndpoint, id)
 
-	req, err := s.rest.NewRequestWithContext(ctx, http.MethodPut, endpoint, &agent)
+	req, err := s.rest.NewRequestWithContext(ctx, http.MethodPut, endpoint, &localAgent)
 	if err != nil {
 		return err
 	}
