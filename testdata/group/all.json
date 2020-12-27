@@ -1,0 +1,19 @@
+[
+  {
+    "name": "bamboo-admin",
+    "members": [
+      "admin",
+      "jane.doe"
+    ]
+  },
+  {
+    "name": "bamboo-developers",
+    "members": []
+  },
+  {
+    "name": "bamboo-users",
+    "members": [
+      "john.doe"
+    ]
+  }
+]
