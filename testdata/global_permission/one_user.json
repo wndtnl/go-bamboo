@@ -1,0 +1,8 @@
+{
+  "name": "bob",
+  "type": "USER",
+  "permissions": [
+    "READ",
+    "CREATE"
+  ]
+}

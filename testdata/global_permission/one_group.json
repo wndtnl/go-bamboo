@@ -1,0 +1,10 @@
+{
+  "name": "bamboo-admin",
+  "type": "GROUP",
+  "permissions": [
+    "CREATE",
+    "READ",
+    "ADMINISTRATION",
+    "CREATEREPOSITORY"
+  ]
+}

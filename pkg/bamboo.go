@@ -13,6 +13,8 @@ type Client struct {
 	LocalAgent       *LocalAgentService
 	SharedCredential *SharedCredentialService
 	Group            *GroupService
+	User             *UserService
+	GlobalPermission *GlobalPermissionService
 }
 
 func NewDefaultClient() (*Client, error) {
@@ -32,6 +34,8 @@ func NewClient(baseURL, username, password string) (*Client, error) {
 		LocalAgent:       NewLocalAgentService(rest),
 		SharedCredential: NewSharedCredentialService(rest),
 		Group:            NewGroupService(rest),
+		User:             NewUserService(rest),
+		GlobalPermission: NewGlobalPermissionService(rest),
 	}
 
 	return bamboo, nil

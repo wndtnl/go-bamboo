@@ -1,0 +1,25 @@
+[
+  {
+    "username": "admin",
+    "fullName": "Admin",
+    "email": "admin@example.com",
+    "password": "",
+    "enabled": true
+  },
+  {
+    "username": "bob",
+    "fullName": "Bob the Builder",
+    "email": "bob@example.com",
+    "password": "",
+    "jabberAddress": "",
+    "enabled": true
+  },
+  {
+    "username": "john.doe",
+    "fullName": "John Doe",
+    "email": "john@company.com",
+    "password": "",
+    "jabberAddress": "",
+    "enabled": false
+  }
+]
