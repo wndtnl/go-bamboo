@@ -18,6 +18,7 @@ type Client struct {
 	LinkedRepository           *LinkedRepositoryService
 	LinkedRepositoryPermission *LinkedRepositoryPermissionService
 	Project                    *ProjectService
+	DeploymentProject          *DeploymentProjectService
 }
 
 func NewDefaultClient() (*Client, error) {
@@ -42,6 +43,7 @@ func NewClient(baseURL, username, password string) (*Client, error) {
 		LinkedRepository:           NewLinkedRepositoryService(rest),
 		LinkedRepositoryPermission: NewLinkedRepositoryPermissionService(rest),
 		Project:                    NewProjectService(rest),
+		DeploymentProject:          NewDeploymentProjectService(rest),
 	}
 
 	return bamboo, nil
