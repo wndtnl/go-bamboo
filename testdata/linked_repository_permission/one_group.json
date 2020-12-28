@@ -1,0 +1,9 @@
+{
+  "repositoryId": 4980737,
+  "name": "bamboo-admin",
+  "type": "GROUP",
+  "permissions": [
+    "READ",
+    "ADMINISTRATION"
+  ]
+}

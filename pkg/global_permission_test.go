@@ -52,7 +52,8 @@ func Test_GlobalPermission_Upsert(t *testing.T) {
 			"CREATE",
 			"READ",
 			"ADMINISTRATION",
-			"CREATEREPOSITORY"},
+			"CREATEREPOSITORY",
+		},
 	})
 	assert.Nil(t, err, err)
 	assert.NotNil(t, globalPermission, "empty response")

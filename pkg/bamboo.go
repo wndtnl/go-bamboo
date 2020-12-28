@@ -9,13 +9,14 @@ const (
 type Client struct {
 	rest *Rest
 
-	GlobalVariable   *GlobalVariableService
-	LocalAgent       *LocalAgentService
-	SharedCredential *SharedCredentialService
-	Group            *GroupService
-	User             *UserService
-	GlobalPermission *GlobalPermissionService
-	LinkedRepository *LinkedRepositoryService
+	GlobalVariable             *GlobalVariableService
+	LocalAgent                 *LocalAgentService
+	SharedCredential           *SharedCredentialService
+	Group                      *GroupService
+	User                       *UserService
+	GlobalPermission           *GlobalPermissionService
+	LinkedRepository           *LinkedRepositoryService
+	LinkedRepositoryPermission *LinkedRepositoryPermissionService
 }
 
 func NewDefaultClient() (*Client, error) {
@@ -30,14 +31,15 @@ func NewClient(baseURL, username, password string) (*Client, error) {
 	}
 
 	bamboo := &Client{
-		rest:             rest,
-		GlobalVariable:   NewGlobalVariableService(rest),
-		LocalAgent:       NewLocalAgentService(rest),
-		SharedCredential: NewSharedCredentialService(rest),
-		Group:            NewGroupService(rest),
-		User:             NewUserService(rest),
-		GlobalPermission: NewGlobalPermissionService(rest),
-		LinkedRepository: NewLinkedRepositoryService(rest),
+		rest:                       rest,
+		GlobalVariable:             NewGlobalVariableService(rest),
+		LocalAgent:                 NewLocalAgentService(rest),
+		SharedCredential:           NewSharedCredentialService(rest),
+		Group:                      NewGroupService(rest),
+		User:                       NewUserService(rest),
+		GlobalPermission:           NewGlobalPermissionService(rest),
+		LinkedRepository:           NewLinkedRepositoryService(rest),
+		LinkedRepositoryPermission: NewLinkedRepositoryPermissionService(rest),
 	}
 
 	return bamboo, nil
