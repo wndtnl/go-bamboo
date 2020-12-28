@@ -15,6 +15,7 @@ type Client struct {
 	Group            *GroupService
 	User             *UserService
 	GlobalPermission *GlobalPermissionService
+	LinkedRepository *LinkedRepositoryService
 }
 
 func NewDefaultClient() (*Client, error) {
@@ -36,6 +37,7 @@ func NewClient(baseURL, username, password string) (*Client, error) {
 		Group:            NewGroupService(rest),
 		User:             NewUserService(rest),
 		GlobalPermission: NewGlobalPermissionService(rest),
+		LinkedRepository: NewLinkedRepositoryService(rest),
 	}
 
 	return bamboo, nil

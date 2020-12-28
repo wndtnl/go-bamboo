@@ -10,3 +10,4 @@ Allows API management of the following Bamboo resources:
 - Groups
 - Users
 - Global Permissions
+- Linked Repositories (Git)

@@ -1,0 +1,22 @@
+{
+  "repositoryUrl": "https://code.company.com/scm/pub/repository.git",
+  "authType": "NONE",
+  "branch": "master",
+  "sharedCredentialId": 0,
+  "useShallowClones": false,
+  "useRemoteAgentCache": true,
+  "useSubmodules": false,
+  "commandTimeout": 180,
+  "verboseLogs": false,
+  "fetchWholeRepository": false,
+  "useLFS": false,
+  "quietPeriodEnabled": false,
+  "quietPeriodWaitTime": 10,
+  "quietPeriodMaxRetries": 5,
+  "filterPattern": "NONE",
+  "filterPatternRegex": "",
+  "changeSetRegex": "",
+  "id": 3309579,
+  "name": "0j7hmptQcLYSgV1LdLD1",
+  "type": "GIT"
+}
