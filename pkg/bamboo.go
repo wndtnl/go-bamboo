@@ -17,6 +17,7 @@ type Client struct {
 	GlobalPermission           *GlobalPermissionService
 	LinkedRepository           *LinkedRepositoryService
 	LinkedRepositoryPermission *LinkedRepositoryPermissionService
+	Project                    *ProjectService
 }
 
 func NewDefaultClient() (*Client, error) {
@@ -40,6 +41,7 @@ func NewClient(baseURL, username, password string) (*Client, error) {
 		GlobalPermission:           NewGlobalPermissionService(rest),
 		LinkedRepository:           NewLinkedRepositoryService(rest),
 		LinkedRepositoryPermission: NewLinkedRepositoryPermissionService(rest),
+		Project:                    NewProjectService(rest),
 	}
 
 	return bamboo, nil

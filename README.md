@@ -11,3 +11,6 @@ Allows API management of the following Bamboo resources:
 - Users
 - Global Permissions
 - Linked Repositories (Git)
+- Linked Repository Permissions
+- Projects
+- Deployment Projects
