@@ -29,7 +29,7 @@ func Test_DeploymentProject_GetOne(t *testing.T) {
 
 	var deploymentProjectService = testClient.DeploymentProject
 
-	deploymentProject, err := deploymentProjectService.GetOne(4063233)
+	deploymentProject, err := deploymentProjectService.GetOne("4063233")
 	assert.Nil(t, err, err)
 	assert.NotNil(t, deploymentProject, "empty response")
 	assert.Equal(t, "Website", deploymentProject.Name)
@@ -52,7 +52,7 @@ func Test_DeploymentProject_Create(t *testing.T) {
 	assert.Nil(t, err, err)
 	assert.NotNil(t, deploymentProject, "empty response")
 	assert.Equal(t, "Website", deploymentProject.Name)
-	assert.Equal(t, 4063233, deploymentProject.Id)
+	assert.Equal(t, "4063233", deploymentProject.Id)
 }
 
 func Test_DeploymentProject_Update(t *testing.T) {
@@ -64,8 +64,8 @@ func Test_DeploymentProject_Update(t *testing.T) {
 
 	var deploymentProjectService = testClient.DeploymentProject
 
-	err := deploymentProjectService.Update(4063233, &DeploymentProject{
-		Id:          4063233,
+	err := deploymentProjectService.Update("4063233", &DeploymentProject{
+		Id:          "4063233",
 		Name:        "updated-name",
 		Description: "",
 		PlanKey:     "KOU-WEB",
@@ -82,6 +82,6 @@ func Test_DeploymentProject_Delete(t *testing.T) {
 
 	var deploymentProjectService = testClient.DeploymentProject
 
-	err := deploymentProjectService.Delete(4063233)
+	err := deploymentProjectService.Delete("4063233")
 	assert.Nil(t, err, err)
 }

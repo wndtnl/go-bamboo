@@ -2,11 +2,11 @@
   {
     "key": "Database4",
     "value": "Connection4",
-    "id": 3211269
+    "id": "3211269"
   },
   {
     "key": "MySecret",
     "value": "NewValue",
-    "id": 3211271
+    "id": "3211271"
   }
 ]

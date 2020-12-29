@@ -29,7 +29,7 @@ func Test_LocalAgent_GetOne(t *testing.T) {
 
 	var localAgentService = testClient.LocalAgent
 
-	agent, err := localAgentService.GetOne(3375106)
+	agent, err := localAgentService.GetOne("3375106")
 	assert.Nil(t, err, err)
 	assert.NotNil(t, agent, "empty response")
 	assert.Equal(t, "Agent1", agent.Name)
@@ -47,7 +47,7 @@ func Test_LocalAgent_Search(t *testing.T) {
 	agent, err := localAgentService.Search("Agent1")
 	assert.Nil(t, err, err)
 	assert.NotNil(t, agent, "empty response")
-	assert.Equal(t, 3375106, agent.Id)
+	assert.Equal(t, "3375106", agent.Id)
 }
 
 func Test_LocalAgent_Create(t *testing.T) {
@@ -79,8 +79,8 @@ func Test_LocalAgent_Update(t *testing.T) {
 
 	var localAgentService = testClient.LocalAgent
 
-	err := localAgentService.Update(3375106, &LocalAgent{
-		Id:          3375106,
+	err := localAgentService.Update("3375106", &LocalAgent{
+		Id:          "3375106",
 		Name:        "Agent2",
 		Description: "New Description",
 		Enabled:     true,
@@ -97,6 +97,6 @@ func Test_LocalAgent_Delete(t *testing.T) {
 
 	var localAgentService = testClient.LocalAgent
 
-	err := localAgentService.Delete(3375106)
+	err := localAgentService.Delete("3375106")
 	assert.Nil(t, err, err)
 }

@@ -1,6 +1,6 @@
 [
   {
-    "repositoryId": 4980737,
+    "repositoryId": "4980737",
     "name": "admin",
     "type": "USER",
     "permissions": [
@@ -9,7 +9,7 @@
     ]
   },
   {
-    "repositoryId": 4980737,
+    "repositoryId": "4980737",
     "name": "john.doe",
     "type": "USER",
     "permissions": [
@@ -17,7 +17,7 @@
     ]
   },
   {
-    "repositoryId": 4980737,
+    "repositoryId": "4980737",
     "name": "bamboo-admin",
     "type": "GROUP",
     "permissions": [

@@ -29,7 +29,7 @@ func Test_GlobalVariable_GetOne(t *testing.T) {
 
 	var globalVariableService = testClient.GlobalVariable
 
-	variable, err := globalVariableService.GetOne(3211269)
+	variable, err := globalVariableService.GetOne("3211269")
 	assert.Nil(t, err, err)
 	assert.NotNil(t, variable, "empty response")
 	assert.Equal(t, "Database4", variable.Key)
@@ -47,7 +47,7 @@ func Test_GlobalVariable_Search(t *testing.T) {
 	variable, err := globalVariableService.Search("Database4")
 	assert.Nil(t, err, err)
 	assert.NotNil(t, variable, "empty response")
-	assert.Equal(t, 3211269, variable.Id)
+	assert.Equal(t, "3211269", variable.Id)
 }
 
 func Test_GlobalVariable_Create(t *testing.T) {
@@ -78,8 +78,8 @@ func Test_GlobalVariable_Update(t *testing.T) {
 
 	var globalVariableService = testClient.GlobalVariable
 
-	err := globalVariableService.Update(3211269, &GlobalVariable{
-		Id:    3211269,
+	err := globalVariableService.Update("3211269", &GlobalVariable{
+		Id:    "3211269",
 		Key:   "MySecret",
 		Value: "TheSecretValue",
 	})
@@ -95,6 +95,6 @@ func Test_GlobalVariable_Delete(t *testing.T) {
 
 	var globalVariableService = testClient.GlobalVariable
 
-	err := globalVariableService.Delete(3211269)
+	err := globalVariableService.Delete("3211269")
 	assert.Nil(t, err, err)
 }

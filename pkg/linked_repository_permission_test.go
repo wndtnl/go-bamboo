@@ -14,7 +14,7 @@ func Test_LinkedRepositoryPermission_GetAll(t *testing.T) {
 
 	var linkedRepositoryPermissionService = testClient.LinkedRepositoryPermission
 
-	linkedRepositoryPermissions, err := linkedRepositoryPermissionService.GetAll(4980737)
+	linkedRepositoryPermissions, err := linkedRepositoryPermissionService.GetAll("4980737")
 	assert.Nil(t, err, err)
 	assert.NotNil(t, linkedRepositoryPermissions, "empty response")
 	assert.Equal(t, 3, len(linkedRepositoryPermissions))
@@ -30,7 +30,7 @@ func Test_LinkedRepositoryPermission_GetOne_Group(t *testing.T) {
 	var linkedRepositoryPermissionService = testClient.LinkedRepositoryPermission
 
 	linkedRepositoryPermission, err :=
-		linkedRepositoryPermissionService.GetOne(4980737, "group", "bamboo-admin")
+		linkedRepositoryPermissionService.GetOne("4980737", "group", "bamboo-admin")
 	assert.Nil(t, err, err)
 	assert.NotNil(t, linkedRepositoryPermission, "empty response")
 	assert.Equal(t, "bamboo-admin", linkedRepositoryPermission.Name)
@@ -47,7 +47,7 @@ func Test_LinkedRepositoryPermission_Upsert(t *testing.T) {
 	var linkedRepositoryPermissionService = testClient.LinkedRepositoryPermission
 
 	linkedRepositoryPermission, err := linkedRepositoryPermissionService.Upsert(&LinkedRepositoryPermission{
-		RepositoryId: 4980737,
+		RepositoryId: "4980737",
 		Name: "bamboo-admin",
 		Type: "GROUP",
 		Permissions: []string{
@@ -70,6 +70,6 @@ func Test_LinkedRepositoryPermission_Delete(t *testing.T) {
 
 	var linkedRepositoryPermissionService = testClient.LinkedRepositoryPermission
 
-	err := linkedRepositoryPermissionService.Delete(4980737, "group", "bamboo-admin")
+	err := linkedRepositoryPermissionService.Delete("4980737", "group", "bamboo-admin")
 	assert.Nil(t, err, err)
 }

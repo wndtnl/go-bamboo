@@ -29,7 +29,7 @@ func Test_SharedCredential_GetOne_Password(t *testing.T) {
 
 	var sharedCredential = testClient.SharedCredential
 
-	credential, err := sharedCredential.GetOne(3473412)
+	credential, err := sharedCredential.GetOne("3473412")
 	assert.Nil(t, err, err)
 	assert.NotNil(t, credential, "empty response")
 	assert.Equal(t, "yUlOmTpWohqvQ4WiPQ9h", credential.Username)
@@ -48,7 +48,7 @@ func Test_SharedCredential_Search_Password(t *testing.T) {
 	credential, err := sharedCredential.Search("LHnR8yFw33o4gfYgdSlZ")
 	assert.Nil(t, err, err)
 	assert.NotNil(t, credential, "empty response")
-	assert.Equal(t, 3473412, credential.Id)
+	assert.Equal(t, "3473412", credential.Id)
 }
 
 func Test_SharedCredential_Create_Password(t *testing.T) {
@@ -68,7 +68,7 @@ func Test_SharedCredential_Create_Password(t *testing.T) {
 	})
 	assert.Nil(t, err, err)
 	assert.NotNil(t, credential, "empty response")
-	assert.Equal(t, 3473412, credential.Id)
+	assert.Equal(t, "3473412", credential.Id)
 }
 
 func Test_SharedCredential_Update_Password(t *testing.T) {
@@ -80,8 +80,8 @@ func Test_SharedCredential_Update_Password(t *testing.T) {
 
 	var sharedCredential = testClient.SharedCredential
 
-	err := sharedCredential.Update(3473412, &SharedCredential{
-		Id:       3473412,
+	err := sharedCredential.Update("3473412", &SharedCredential{
+		Id:       "3473412",
 		Name:     "Agent2",
 		Type:     "PASSWORD",
 		Username: "username",
@@ -99,6 +99,6 @@ func Test_SharedCredential_Delete(t *testing.T) {
 
 	var sharedCredential = testClient.SharedCredential
 
-	err := sharedCredential.Delete(3473412)
+	err := sharedCredential.Delete("3473412")
 	assert.Nil(t, err, err)
 }

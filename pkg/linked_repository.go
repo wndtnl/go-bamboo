@@ -7,7 +7,7 @@ import (
 )
 
 type LinkedRepository struct {
-	Id   int    `json:"id"`
+	Id   string `json:"id"`
 	Name string `json:"name"`
 	Type string `json:"type"`
 
@@ -75,13 +75,13 @@ func (s *LinkedRepositoryService) GetAllWithContext(ctx context.Context) ([]*Lin
 	return linkedRepositories, err
 }
 
-func (s *LinkedRepositoryService) GetOne(id int) (*LinkedRepository, error) {
+func (s *LinkedRepositoryService) GetOne(id string) (*LinkedRepository, error) {
 	return s.GetOneWithContext(context.Background(), id)
 }
 
-func (s *LinkedRepositoryService) GetOneWithContext(ctx context.Context, id int) (*LinkedRepository, error) {
+func (s *LinkedRepositoryService) GetOneWithContext(ctx context.Context, id string) (*LinkedRepository, error) {
 
-	endpoint := fmt.Sprintf("%s/%d", linkedRepositoryEndpoint, id)
+	endpoint := fmt.Sprintf("%s/%s", linkedRepositoryEndpoint, id)
 	req, err := s.rest.NewRequestWithContext(ctx, http.MethodGet, endpoint, nil)
 	if err != nil {
 		return nil, err
@@ -111,14 +111,14 @@ func (s *LinkedRepositoryService) CreateWithContext(
 	return newLinkedRepository, err
 }
 
-func (s *LinkedRepositoryService) Update(id int, linkedRepository *LinkedRepository) error {
+func (s *LinkedRepositoryService) Update(id string, linkedRepository *LinkedRepository) error {
 	return s.UpdateWithContext(context.Background(), id, linkedRepository)
 }
 
 func (s *LinkedRepositoryService) UpdateWithContext(
-	ctx context.Context, id int, linkedRepository *LinkedRepository) error {
+	ctx context.Context, id string, linkedRepository *LinkedRepository) error {
 
-	endpoint := fmt.Sprintf("%s/%d", linkedRepositoryEndpoint, id)
+	endpoint := fmt.Sprintf("%s/%s", linkedRepositoryEndpoint, id)
 
 	req, err := s.rest.NewRequestWithContext(ctx, http.MethodPut, endpoint, &linkedRepository)
 	if err != nil {
@@ -128,13 +128,13 @@ func (s *LinkedRepositoryService) UpdateWithContext(
 	return s.rest.Do(req, nil)
 }
 
-func (s *LinkedRepositoryService) Delete(id int) error {
+func (s *LinkedRepositoryService) Delete(id string) error {
 	return s.DeleteWithContext(context.Background(), id)
 }
 
-func (s *LinkedRepositoryService) DeleteWithContext(ctx context.Context, id int) error {
+func (s *LinkedRepositoryService) DeleteWithContext(ctx context.Context, id string) error {
 
-	endpoint := fmt.Sprintf("%s/%d", linkedRepositoryEndpoint, id)
+	endpoint := fmt.Sprintf("%s/%s", linkedRepositoryEndpoint, id)
 
 	req, err := s.rest.NewRequestWithContext(ctx, http.MethodDelete, endpoint, nil)
 	if err != nil {

@@ -8,7 +8,7 @@ import (
 )
 
 type Project struct {
-	Id          int    `json:"id"`
+	Id          string `json:"id"`
 	Name        string `json:"name"`
 	Key         string `json:"key"`
 	Description string `json:"description"`
@@ -43,13 +43,13 @@ func (s *ProjectService) GetAllWithContext(ctx context.Context) ([]*Project, err
 	return projects, err
 }
 
-func (s *ProjectService) GetOne(id int) (*Project, error) {
+func (s *ProjectService) GetOne(id string) (*Project, error) {
 	return s.GetOneWithContext(context.Background(), id)
 }
 
-func (s *ProjectService) GetOneWithContext(ctx context.Context, id int) (*Project, error) {
+func (s *ProjectService) GetOneWithContext(ctx context.Context, id string) (*Project, error) {
 
-	endpoint := fmt.Sprintf("%s/%d", projectEndpoint, id)
+	endpoint := fmt.Sprintf("%s/%s", projectEndpoint, id)
 	req, err := s.rest.NewRequestWithContext(ctx, http.MethodGet, endpoint, nil)
 	if err != nil {
 		return nil, err
@@ -96,13 +96,13 @@ func (s *ProjectService) CreateWithContext(ctx context.Context, project *Project
 	return newProject, err
 }
 
-func (s *ProjectService) Update(id int, project *Project) error {
+func (s *ProjectService) Update(id string, project *Project) error {
 	return s.UpdateWithContext(context.Background(), id, project)
 }
 
-func (s *ProjectService) UpdateWithContext(ctx context.Context, id int, project *Project) error {
+func (s *ProjectService) UpdateWithContext(ctx context.Context, id string, project *Project) error {
 
-	endpoint := fmt.Sprintf("%s/%d", projectEndpoint, id)
+	endpoint := fmt.Sprintf("%s/%s", projectEndpoint, id)
 
 	req, err := s.rest.NewRequestWithContext(ctx, http.MethodPut, endpoint, &project)
 	if err != nil {
@@ -112,13 +112,13 @@ func (s *ProjectService) UpdateWithContext(ctx context.Context, id int, project 
 	return s.rest.Do(req, nil)
 }
 
-func (s *ProjectService) Delete(id int) error {
+func (s *ProjectService) Delete(id string) error {
 	return s.DeleteWithContext(context.Background(), id)
 }
 
-func (s *ProjectService) DeleteWithContext(ctx context.Context, id int) error {
+func (s *ProjectService) DeleteWithContext(ctx context.Context, id string) error {
 
-	endpoint := fmt.Sprintf("%s/%d", projectEndpoint, id)
+	endpoint := fmt.Sprintf("%s/%s", projectEndpoint, id)
 
 	req, err := s.rest.NewRequestWithContext(ctx, http.MethodDelete, endpoint, nil)
 	if err != nil {

@@ -8,7 +8,7 @@ import (
 )
 
 type GlobalVariable struct {
-	Id    int    `json:"id"`
+	Id    string `json:"id"`
 	Key   string `json:"key"`
 	Value string `json:"value"`
 }
@@ -42,13 +42,13 @@ func (s *GlobalVariableService) GetAllWithContext(ctx context.Context) ([]*Globa
 	return globalVariables, err
 }
 
-func (s *GlobalVariableService) GetOne(id int) (*GlobalVariable, error) {
+func (s *GlobalVariableService) GetOne(id string) (*GlobalVariable, error) {
 	return s.GetOneWithContext(context.Background(), id)
 }
 
-func (s *GlobalVariableService) GetOneWithContext(ctx context.Context, id int) (*GlobalVariable, error) {
+func (s *GlobalVariableService) GetOneWithContext(ctx context.Context, id string) (*GlobalVariable, error) {
 
-	endpoint := fmt.Sprintf("%s/%d", globalVariableEndpoint, id)
+	endpoint := fmt.Sprintf("%s/%s", globalVariableEndpoint, id)
 	req, err := s.rest.NewRequestWithContext(ctx, http.MethodGet, endpoint, nil)
 	if err != nil {
 		return nil, err
@@ -95,13 +95,13 @@ func (s *GlobalVariableService) CreateWithContext(ctx context.Context, globalVar
 	return newVariable, err
 }
 
-func (s *GlobalVariableService) Update(id int, globalVariable *GlobalVariable) error {
+func (s *GlobalVariableService) Update(id string, globalVariable *GlobalVariable) error {
 	return s.UpdateWithContext(context.Background(), id, globalVariable)
 }
 
-func (s *GlobalVariableService) UpdateWithContext(ctx context.Context, id int, globalVariable *GlobalVariable) error {
+func (s *GlobalVariableService) UpdateWithContext(ctx context.Context, id string, globalVariable *GlobalVariable) error {
 
-	endpoint := fmt.Sprintf("%s/%d", globalVariableEndpoint, id)
+	endpoint := fmt.Sprintf("%s/%s", globalVariableEndpoint, id)
 
 	req, err := s.rest.NewRequestWithContext(ctx, http.MethodPut, endpoint, &globalVariable)
 	if err != nil {
@@ -111,13 +111,13 @@ func (s *GlobalVariableService) UpdateWithContext(ctx context.Context, id int, g
 	return s.rest.Do(req, nil)
 }
 
-func (s *GlobalVariableService) Delete(id int) error {
+func (s *GlobalVariableService) Delete(id string) error {
 	return s.DeleteWithContext(context.Background(), id)
 }
 
-func (s *GlobalVariableService) DeleteWithContext(ctx context.Context, id int) error {
+func (s *GlobalVariableService) DeleteWithContext(ctx context.Context, id string) error {
 
-	endpoint := fmt.Sprintf("%s/%d", globalVariableEndpoint, id)
+	endpoint := fmt.Sprintf("%s/%s", globalVariableEndpoint, id)
 
 	req, err := s.rest.NewRequestWithContext(ctx, http.MethodDelete, endpoint, nil)
 	if err != nil {

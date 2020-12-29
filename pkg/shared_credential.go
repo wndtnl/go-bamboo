@@ -8,7 +8,7 @@ import (
 )
 
 type SharedCredential struct {
-	Id   int    `json:"id"`
+	Id   string `json:"id"`
 	Name string `json:"name"`
 	Type string `json:"type"`
 
@@ -54,13 +54,13 @@ func (s *SharedCredentialService) GetAllWithContext(ctx context.Context) ([]*Sha
 	return sharedCredentials, err
 }
 
-func (s *SharedCredentialService) GetOne(id int) (*SharedCredential, error) {
+func (s *SharedCredentialService) GetOne(id string) (*SharedCredential, error) {
 	return s.GetOneWithContext(context.Background(), id)
 }
 
-func (s *SharedCredentialService) GetOneWithContext(ctx context.Context, id int) (*SharedCredential, error) {
+func (s *SharedCredentialService) GetOneWithContext(ctx context.Context, id string) (*SharedCredential, error) {
 
-	endpoint := fmt.Sprintf("%s/%d", sharedCredentialEndpoint, id)
+	endpoint := fmt.Sprintf("%s/%s", sharedCredentialEndpoint, id)
 	req, err := s.rest.NewRequestWithContext(ctx, http.MethodGet, endpoint, nil)
 	if err != nil {
 		return nil, err
@@ -108,14 +108,14 @@ func (s *SharedCredentialService) CreateWithContext(
 	return newSharedCredential, err
 }
 
-func (s *SharedCredentialService) Update(id int, sharedCredential *SharedCredential) error {
+func (s *SharedCredentialService) Update(id string, sharedCredential *SharedCredential) error {
 	return s.UpdateWithContext(context.Background(), id, sharedCredential)
 }
 
 func (s *SharedCredentialService) UpdateWithContext(
-	ctx context.Context, id int, sharedCredential *SharedCredential) error {
+	ctx context.Context, id string, sharedCredential *SharedCredential) error {
 
-	endpoint := fmt.Sprintf("%s/%d", sharedCredentialEndpoint, id)
+	endpoint := fmt.Sprintf("%s/%s", sharedCredentialEndpoint, id)
 
 	req, err := s.rest.NewRequestWithContext(ctx, http.MethodPut, endpoint, &sharedCredential)
 	if err != nil {
@@ -125,13 +125,13 @@ func (s *SharedCredentialService) UpdateWithContext(
 	return s.rest.Do(req, nil)
 }
 
-func (s *SharedCredentialService) Delete(id int) error {
+func (s *SharedCredentialService) Delete(id string) error {
 	return s.DeleteWithContext(context.Background(), id)
 }
 
-func (s *SharedCredentialService) DeleteWithContext(ctx context.Context, id int) error {
+func (s *SharedCredentialService) DeleteWithContext(ctx context.Context, id string) error {
 
-	endpoint := fmt.Sprintf("%s/%d", sharedCredentialEndpoint, id)
+	endpoint := fmt.Sprintf("%s/%s", sharedCredentialEndpoint, id)
 
 	req, err := s.rest.NewRequestWithContext(ctx, http.MethodDelete, endpoint, nil)
 	if err != nil {

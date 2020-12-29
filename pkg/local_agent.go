@@ -8,7 +8,7 @@ import (
 )
 
 type LocalAgent struct {
-	Id          int    `json:"id"`
+	Id          string `json:"id"`
 	Name        string `json:"name"`
 	Description string `json:"description"`
 	Enabled     bool   `json:"enabled"`
@@ -43,13 +43,13 @@ func (s *LocalAgentService) GetAllWithContext(ctx context.Context) ([]*LocalAgen
 	return localAgents, err
 }
 
-func (s *LocalAgentService) GetOne(id int) (*LocalAgent, error) {
+func (s *LocalAgentService) GetOne(id string) (*LocalAgent, error) {
 	return s.GetOneWithContext(context.Background(), id)
 }
 
-func (s *LocalAgentService) GetOneWithContext(ctx context.Context, id int) (*LocalAgent, error) {
+func (s *LocalAgentService) GetOneWithContext(ctx context.Context, id string) (*LocalAgent, error) {
 
-	endpoint := fmt.Sprintf("%s/%d", localAgentEndpoint, id)
+	endpoint := fmt.Sprintf("%s/%s", localAgentEndpoint, id)
 	req, err := s.rest.NewRequestWithContext(ctx, http.MethodGet, endpoint, nil)
 	if err != nil {
 		return nil, err
@@ -96,13 +96,13 @@ func (s *LocalAgentService) CreateWithContext(ctx context.Context, localAgent *L
 	return newAgent, err
 }
 
-func (s *LocalAgentService) Update(id int, localAgent *LocalAgent) error {
+func (s *LocalAgentService) Update(id string, localAgent *LocalAgent) error {
 	return s.UpdateWithContext(context.Background(), id, localAgent)
 }
 
-func (s *LocalAgentService) UpdateWithContext(ctx context.Context, id int, localAgent *LocalAgent) error {
+func (s *LocalAgentService) UpdateWithContext(ctx context.Context, id string, localAgent *LocalAgent) error {
 
-	endpoint := fmt.Sprintf("%s/%d", localAgentEndpoint, id)
+	endpoint := fmt.Sprintf("%s/%s", localAgentEndpoint, id)
 
 	req, err := s.rest.NewRequestWithContext(ctx, http.MethodPut, endpoint, &localAgent)
 	if err != nil {
@@ -112,13 +112,13 @@ func (s *LocalAgentService) UpdateWithContext(ctx context.Context, id int, local
 	return s.rest.Do(req, nil)
 }
 
-func (s *LocalAgentService) Delete(id int) error {
+func (s *LocalAgentService) Delete(id string) error {
 	return s.DeleteWithContext(context.Background(), id)
 }
 
-func (s *LocalAgentService) DeleteWithContext(ctx context.Context, id int) error {
+func (s *LocalAgentService) DeleteWithContext(ctx context.Context, id string) error {
 
-	endpoint := fmt.Sprintf("%s/%d", localAgentEndpoint, id)
+	endpoint := fmt.Sprintf("%s/%s", localAgentEndpoint, id)
 
 	req, err := s.rest.NewRequestWithContext(ctx, http.MethodDelete, endpoint, nil)
 	if err != nil {

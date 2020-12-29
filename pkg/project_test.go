@@ -29,7 +29,7 @@ func Test_Project_GetOne(t *testing.T) {
 
 	var projectService = testClient.Project
 
-	project, err := projectService.GetOne(3440642)
+	project, err := projectService.GetOne("3440642")
 	assert.Nil(t, err, err)
 	assert.NotNil(t, project, "empty response")
 	assert.Equal(t, "PWT", project.Key)
@@ -47,7 +47,7 @@ func Test_Project_Search(t *testing.T) {
 	project, err := projectService.Search("PWT")
 	assert.Nil(t, err, err)
 	assert.NotNil(t, project, "empty response")
-	assert.Equal(t, 3440642, project.Id)
+	assert.Equal(t, "3440642", project.Id)
 }
 
 func Test_Project_Create(t *testing.T) {
@@ -67,7 +67,7 @@ func Test_Project_Create(t *testing.T) {
 	assert.Nil(t, err, err)
 	assert.NotNil(t, project, "empty response")
 	assert.Equal(t, "PWT", project.Key)
-	assert.Equal(t, 3440642, project.Id)
+	assert.Equal(t, "3440642", project.Id)
 }
 
 func Test_Project_Update(t *testing.T) {
@@ -79,7 +79,7 @@ func Test_Project_Update(t *testing.T) {
 
 	var projectService = testClient.Project
 
-	err := projectService.Update(3440642, &Project{
+	err := projectService.Update("3440642", &Project{
 		Name: "updated-name",
 		Key: "PWT",
 		Description: "0YTPeDwGUfxJAHMSjG82ULqTkw1b6hhcHonRcthM",
@@ -96,6 +96,6 @@ func Test_Project_Delete(t *testing.T) {
 
 	var projectService = testClient.Project
 
-	err := projectService.Delete(3440642)
+	err := projectService.Delete("3440642")
 	assert.Nil(t, err, err)
 }

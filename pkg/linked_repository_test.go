@@ -29,7 +29,7 @@ func Test_LinkedRepository_GetOne(t *testing.T) {
 
 	var linkedRepositoryService = testClient.LinkedRepository
 
-	linkedRepository, err := linkedRepositoryService.GetOne(3309579)
+	linkedRepository, err := linkedRepositoryService.GetOne("3309579")
 	assert.Nil(t, err, err)
 	assert.NotNil(t, linkedRepository, "empty response")
 	assert.Equal(t, "0j7hmptQcLYSgV1LdLD1", linkedRepository.Name)
@@ -63,8 +63,8 @@ func Test_LinkedRepository_Update_Git_None(t *testing.T) {
 
 	var linkedRepositoryService = testClient.LinkedRepository
 
-	err := linkedRepositoryService.Update(3309579, &LinkedRepository{
-		Id:       3309579,
+	err := linkedRepositoryService.Update("3309579", &LinkedRepository{
+		Id:       "3309579",
 		Name:     "updated-name",
 		Type:     "GIT",
 		AuthType: "NONE",
@@ -81,6 +81,6 @@ func Test_LinkedRepository_Delete(t *testing.T) {
 
 	var linkedRepositoryService = testClient.LinkedRepository
 
-	err := linkedRepositoryService.Delete(3309579)
+	err := linkedRepositoryService.Delete("3309579")
 	assert.Nil(t, err, err)
 }
