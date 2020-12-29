@@ -78,7 +78,7 @@ func (s *SharedCredentialService) Search(key string) (*SharedCredential, error) 
 
 func (s *SharedCredentialService) SearchWithContext(ctx context.Context, key string) (*SharedCredential, error) {
 
-	endpoint := fmt.Sprintf("%s/search?name=%s", sharedCredentialEndpoint, url.QueryEscape(key))
+	endpoint := fmt.Sprintf("%s/search?name=%s", sharedCredentialEndpoint, url.PathEscape(key))
 	req, err := s.rest.NewRequestWithContext(ctx, http.MethodGet, endpoint, nil)
 	if err != nil {
 		return nil, err

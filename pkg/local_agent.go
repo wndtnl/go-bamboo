@@ -67,7 +67,7 @@ func (s *LocalAgentService) Search(name string) (*LocalAgent, error) {
 
 func (s *LocalAgentService) SearchWithContext(ctx context.Context, name string) (*LocalAgent, error) {
 
-	endpoint := fmt.Sprintf("%s/search?name=%s", localAgentEndpoint, url.QueryEscape(name))
+	endpoint := fmt.Sprintf("%s/search?name=%s", localAgentEndpoint, url.PathEscape(name))
 	req, err := s.rest.NewRequestWithContext(ctx, http.MethodGet, endpoint, nil)
 	if err != nil {
 		return nil, err

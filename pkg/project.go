@@ -67,7 +67,7 @@ func (s *ProjectService) Search(key string) (*Project, error) {
 
 func (s *ProjectService) SearchWithContext(ctx context.Context, key string) (*Project, error) {
 
-	endpoint := fmt.Sprintf("%s/search?key=%s", projectEndpoint, url.QueryEscape(key))
+	endpoint := fmt.Sprintf("%s/search?key=%s", projectEndpoint, url.PathEscape(key))
 	req, err := s.rest.NewRequestWithContext(ctx, http.MethodGet, endpoint, nil)
 	if err != nil {
 		return nil, err

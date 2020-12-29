@@ -66,7 +66,7 @@ func (s *GlobalVariableService) Search(key string) (*GlobalVariable, error) {
 
 func (s *GlobalVariableService) SearchWithContext(ctx context.Context, key string) (*GlobalVariable, error) {
 
-	endpoint := fmt.Sprintf("%s/search?key=%s", globalVariableEndpoint, url.QueryEscape(key))
+	endpoint := fmt.Sprintf("%s/search?key=%s", globalVariableEndpoint, url.PathEscape(key))
 	req, err := s.rest.NewRequestWithContext(ctx, http.MethodGet, endpoint, nil)
 	if err != nil {
 		return nil, err

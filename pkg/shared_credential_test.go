@@ -45,7 +45,7 @@ func Test_SharedCredential_Search_Password(t *testing.T) {
 
 	var sharedCredential = testClient.SharedCredential
 
-	credential, err := sharedCredential.Search("LHnR8yFw33o4gfYgdSlZ")
+	credential, err := sharedCredential.Search("Cred Password")
 	assert.Nil(t, err, err)
 	assert.NotNil(t, credential, "empty response")
 	assert.Equal(t, "3473412", credential.Id)
