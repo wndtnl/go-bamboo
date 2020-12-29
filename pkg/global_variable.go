@@ -78,18 +78,13 @@ func (s *GlobalVariableService) SearchWithContext(ctx context.Context, key strin
 	return globalVariable, err
 }
 
-func (s *GlobalVariableService) Create(key, value string) (*GlobalVariable, error) {
-	return s.CreateWithContext(context.Background(), key, value)
+func (s *GlobalVariableService) Create(globalVariable *GlobalVariable) (*GlobalVariable, error) {
+	return s.CreateWithContext(context.Background(), globalVariable)
 }
 
-func (s *GlobalVariableService) CreateWithContext(ctx context.Context, key, value string) (*GlobalVariable, error) {
+func (s *GlobalVariableService) CreateWithContext(ctx context.Context, globalVariable *GlobalVariable) (*GlobalVariable, error) {
 
-	variable := &GlobalVariable{
-		Key:   key,
-		Value: value,
-	}
-
-	req, err := s.rest.NewRequestWithContext(ctx, http.MethodPost, globalVariableEndpoint, &variable)
+	req, err := s.rest.NewRequestWithContext(ctx, http.MethodPost, globalVariableEndpoint, &globalVariable)
 	if err != nil {
 		return nil, err
 	}
@@ -100,21 +95,15 @@ func (s *GlobalVariableService) CreateWithContext(ctx context.Context, key, valu
 	return newVariable, err
 }
 
-func (s *GlobalVariableService) Update(id int, key, value string) error {
-	return s.UpdateWithContext(context.Background(), id, key, value)
+func (s *GlobalVariableService) Update(id int, globalVariable *GlobalVariable) error {
+	return s.UpdateWithContext(context.Background(), id, globalVariable)
 }
 
-func (s *GlobalVariableService) UpdateWithContext(ctx context.Context, id int, key, value string) error {
-
-	variable := &GlobalVariable{
-		Id:    id,
-		Key:   key,
-		Value: value,
-	}
+func (s *GlobalVariableService) UpdateWithContext(ctx context.Context, id int, globalVariable *GlobalVariable) error {
 
 	endpoint := fmt.Sprintf("%s/%d", globalVariableEndpoint, id)
 
-	req, err := s.rest.NewRequestWithContext(ctx, http.MethodPut, endpoint, &variable)
+	req, err := s.rest.NewRequestWithContext(ctx, http.MethodPut, endpoint, &globalVariable)
 	if err != nil {
 		return err
 	}
