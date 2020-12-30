@@ -123,18 +123,39 @@ func toPayload(res *http.Response, payload interface{}) error {
 	return err
 }
 
+type Error interface {
+	Status() int
+	error
+}
+
+type apiError struct {
+	StatusCode int
+	Content string
+}
+
 func toError(res *http.Response) error {
+	a := &apiError{}
 
 	bodyBytes, err := ioutil.ReadAll(res.Body)
 	if err != nil {
 		return err
 	}
 	content := string(bodyBytes)
-	status := res.StatusCode
 
-	if content == "" {
-		return fmt.Errorf("request failed with status %d", status)
+	a.Content = content
+	a.StatusCode = res.StatusCode
+
+	return a
+}
+
+func (a *apiError) Error() string {
+	if a.Content == "" {
+		return fmt.Sprintf("request failed with status %d", a.StatusCode)
 	} else {
-		return fmt.Errorf("request failed with status %d and content: %s", status, content)
+		return fmt.Sprintf("request failed with status %d and content: %s", a.StatusCode, a.Content)
 	}
+}
+
+func (a *apiError) Status() int {
+	return a.StatusCode
 }
