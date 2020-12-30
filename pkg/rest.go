@@ -27,7 +27,7 @@ type Rest struct {
 func NewBasicAuthClient(baseURL, username, password string) (*Rest, error) {
 
 	httpClient := &http.Client{
-		Timeout: time.Second * 10,
+		Timeout: time.Minute * 5,
 	}
 
 	parsedUrl, err := url.Parse(baseURL)
