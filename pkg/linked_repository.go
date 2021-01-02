@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"net/http"
+	"net/url"
 )
 
 type LinkedRepository struct {
@@ -82,6 +83,24 @@ func (s *LinkedRepositoryService) GetOne(id string) (*LinkedRepository, error) {
 func (s *LinkedRepositoryService) GetOneWithContext(ctx context.Context, id string) (*LinkedRepository, error) {
 
 	endpoint := fmt.Sprintf("%s/%s", linkedRepositoryEndpoint, id)
+	req, err := s.rest.NewRequestWithContext(ctx, http.MethodGet, endpoint, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	linkedRepository := new(LinkedRepository)
+	err = s.rest.Do(req, linkedRepository)
+
+	return linkedRepository, err
+}
+
+func (s *LinkedRepositoryService) Search(name string) (*LinkedRepository, error) {
+	return s.SearchWithContext(context.Background(), name)
+}
+
+func (s *LinkedRepositoryService) SearchWithContext(ctx context.Context, name string) (*LinkedRepository, error) {
+
+	endpoint := fmt.Sprintf("%s/search?name=%s", linkedRepositoryEndpoint, url.PathEscape(name))
 	req, err := s.rest.NewRequestWithContext(ctx, http.MethodGet, endpoint, nil)
 	if err != nil {
 		return nil, err
