@@ -25,7 +25,7 @@ type LinkedRepository struct {
 	SshPassphrase string `json:"sshPassphrase"`
 
 	// AuthType: [PASSWORD|SSH]_SHARED
-	SharedCredentialId int `json:"sharedCredentialId"`
+	SharedCredentialId string `json:"sharedCredentialId"`
 
 	// Options
 	UseShallowClones     bool `json:"useShallowClones"`
